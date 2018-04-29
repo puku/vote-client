@@ -1,16 +1,17 @@
 module.exports = {
+  mode: "development",
   entry: [
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
     './src/index.js'
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel'
-      }
-    ],
-    rules: [
+        loader: "babel-loader"
+      },
       {
         test: /\.css$/,
         use: ["style-loader", "css-loader", "postcss-loader"]
@@ -18,7 +19,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
   output: {
     path: __dirname + '/dist',
@@ -26,6 +27,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    hot: true
   }
 };
