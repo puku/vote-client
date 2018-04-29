@@ -3,14 +3,19 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './src/index.js'
+    './src/index.jsx'
   ],
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react']
+          }
+        }
       },
       {
         test: /\.css$/,
@@ -27,7 +32,6 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    contentBase: './dist',
-    hot: true
+    contentBase: './dist'
   }
 };
